@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      auto_route_generator:auto_router_generator:
+        generate_for:
+          - lib/src/application/router/application_router.dart
+      auto_route_generator:auto_route_generator:
+        generate_for:
+          - lib/src/application/widget/screen/**.dart
+      source_gen|combining_builder:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
+      slang_build_runner:
+        options:
+          base_locale: ru
+          translate_var: translations
+          timestamp: false
+          fallback_strategy: base_locale
+          input_directory: assets/translations/
+          output_directory: lib/generated/
