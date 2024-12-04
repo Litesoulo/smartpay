@@ -1,43 +1,60 @@
-import 'package:mobx/mobx.dart';
-import 'package:flutter/material.dart';
-import 'package:smartpay/generated/strings.g.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:mobx/mobx.dart';
+
+import '../../../../generated/strings.g.dart';
 import '../../model/entity/settings_entity.dart';
 import '../../model/repository/settings_repository.dart';
 
 part '../../../generated/src/view_model/settings/settings_store.g.dart';
 
-class SettingsStore = _SettingsStore with _$SettingsStore;
+class SettingsStore = _SettingsStoreBase with _$SettingsStore;
 
-abstract class _SettingsStore with Store {
-  final SettingsRepository _repository;
+abstract class _SettingsStoreBase with Store {
+  final SettingsRepository _settingsRepository;
+  final Completer<void> _initCompleter;
 
-  _SettingsStore({
-    required SettingsRepository repository,
-  }) : _repository = repository;
+  _SettingsStoreBase({
+    required SettingsRepository settingsRepository,
+    required Completer<void> initCompleter,
+  })  : _settingsRepository = settingsRepository,
+        _initCompleter = initCompleter {
+    _init();
+  }
 
   @observable
-  SettingsEntity settings = SettingsEntity.defaultSettings();
+  late SettingsEntity settings;
 
-  @action
-  Future<void> loadSettings() async {
-    final storedSettings = await _repository.settings;
-    settings = storedSettings;
-  }
+  _init() async {
+    settings = await _settingsRepository.settings;
 
-  bool get isDarkMode => settings.themeMode == ThemeMode.dark;
-
-  @action
-  Future<void> setThemeMode(ThemeMode value) async {
-    settings = settings.copyWith(
-      themeMode: value,
+    // Set up locale-related functionality
+    LocaleSettings.getLocaleStream().listen(
+      (event) {
+        Intl.defaultLocale = event.flutterLocale.toLanguageTag();
+      },
     );
-    await _repository.saveSettings(settings);
+
+    LocaleSettings.setLocale(settings.locale);
+
+    _initCompleter.complete();
   }
 
   @action
-  Future<void> changeLanguage(AppLocale? locale) async {
+  Future<void> setThemeMode(ThemeMode themeMode) async {
+    settings = settings.copyWith(themeMode: themeMode);
+    await _settingsRepository.saveSettings(settings);
+  }
+
+  @action
+  Future<void> setLocale(AppLocale? locale) async {
+    if (locale == null) return;
+
     settings = settings.copyWith(locale: locale);
-    await _repository.saveSettings(settings);
+    LocaleSettings.setLocale(locale);
+
+    await _settingsRepository.saveSettings(settings);
   }
 }

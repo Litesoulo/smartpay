@@ -1,9 +1,12 @@
 part of 'sl.dart';
 
 Future<void> _setupViewModel() async {
-  sl.registerSingleton<SettingsStore>(
+  final settingsStoreCompleter = Completer<void>();
+  sl.registerSingleton(
     SettingsStore(
-      repository: sl<SettingsRepository>(),
+      settingsRepository: sl<SettingsRepository>(),
+      initCompleter: settingsStoreCompleter,
     ),
   );
+  await settingsStoreCompleter.future;
 }

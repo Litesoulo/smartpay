@@ -70,7 +70,7 @@ class _LanguageSelector extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConstants.borderRadius / 1.4),
           child: DropdownButton2<AppLocale>(
             value: sl<SettingsStore>().settings.locale,
-            onChanged: (value) => sl<SettingsStore>().changeLanguage(value),
+            onChanged: (value) => sl<SettingsStore>().setLocale(value),
             underline: const SizedBox.shrink(),
             items: AppLocale.values
                 .map<DropdownMenuItem<AppLocale>>(
