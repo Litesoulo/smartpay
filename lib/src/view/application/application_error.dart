@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/extensions/extensions.dart';
+import '../../common/extensions/extensions.dart';
 
 class ApplicationError extends StatelessWidget {
   const ApplicationError({super.key});
