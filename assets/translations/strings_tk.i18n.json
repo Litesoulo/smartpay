@@ -1,0 +1,29 @@
+{
+  "@@locale": "tk",
+  "hello": "Salam!",
+  "dashboard": {
+    "home": "Baş sahypa",
+    "transactionHistory": "Amallaryň taryhy",
+    "bankCards": "Kartlarym",
+    "settings": "Sazlamalar"
+  },
+  "settings": {
+    "theme": "Tema",
+    "language": "Dil",
+    "aboutApp": "Programma Barada",
+    "aboutAppSubtitle": "Programma barada köpräk bilmek üçin basyň"
+  },
+  "themeMode": {
+    "dark": "Garaňky",
+    "light": "Ýagty"
+  },
+  "locale": {
+    "turkmen": "Türkmen",
+    "russian": "Rus",
+    "english": "Iňlis"
+  },
+  "transactionHistory": {
+    "incoming": "Kabul edildi",
+    "outcoming": "Iberildi"
+  }
+}

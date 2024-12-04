@@ -1,0 +1,33 @@
+<resources>
+    <!-- Light Mode Colors -->
+    <color name="scaffoldBackgroundLight">#FFFFFF</color>
+    <color name="surfaceLight">#F5F5F5</color>
+    <color name="onSurfaceLight">#1A202C</color>
+
+    <color name="primaryLight">#2B3BD4</color>
+    <color name="onPrimaryLight">#FFFFFF</color>
+
+    <color name="secondaryLight">#10B981</color>
+    <color name="onSecondaryLight">#FFFFFF</color>
+
+    <color name="errorLight">#EF4444</color>
+    <color name="onErrorLight">#FFFFFF</color>
+
+    <color name="cardLight">#F5F5F5</color>
+
+    <!-- Dark Mode Colors -->
+    <color name="scaffoldBackgroundDark">#171717</color>
+    <color name="surfaceDark">#262626</color>
+    <color name="onSurfaceDark">#F5F5F5</color>
+
+    <color name="primaryDark">#5850FF</color>
+    <color name="onPrimaryDark">#FFFFFF</color>
+
+    <color name="secondaryDark">#22C55E</color>
+    <color name="onSecondaryDark">#FFFFFF</color>
+
+    <color name="errorDark">#F87171</color>
+    <color name="onErrorDark">#FFFFFF</color>
+
+    <color name="cardDark">#2F2F2F</color>
+</resources>

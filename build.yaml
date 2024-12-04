@@ -3,7 +3,7 @@ targets:
     builders:
       auto_route_generator:auto_router_generator:
         generate_for:
-          - lib/src/config/router/app_router.dart
+          - lib/src/common/router/app_router.dart
       auto_route_generator:auto_route_generator:
         generate_for:
           - lib/src/view/**_screen.dart
@@ -14,7 +14,6 @@ targets:
       slang_build_runner:
         options:
           base_locale: ru
-          translate_var: translations
           timestamp: false
           fallback_strategy: base_locale
           input_directory: assets/translations/

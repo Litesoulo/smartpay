@@ -1,0 +1,29 @@
+{
+  "@@locale": "en",
+  "hello": "Hello!",
+  "dashboard": {
+    "home": "Home",
+    "transactionHistory": "History",
+    "bankCards": "My Cards",
+    "settings": "Settings"
+  },
+  "settings": {
+    "theme": "Theme mode",
+    "language": "Language",
+    "aboutApp": "About App",
+    "aboutAppSubtitle": "Tap to see more about app"
+  },
+  "themeMode": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "locale": {
+    "turkmen": "Turkmen",
+    "russian": "Russian",
+    "english": "English"
+  },
+  "transactionHistory": {
+    "incoming": "Received",
+    "outcoming": "Sent"
+  }
+}

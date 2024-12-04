@@ -1,10 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../generated/strings.g.dart';
+import '../../common/constant/app_constants.dart';
+import '../../common/extensions/extensions.dart';
+import '../../common/widget/space.dart';
 import '../../sl/sl.dart';
 import '../../view_model/settings/settings_store.dart';
+
+part 'widget/__app_settings_group.dart';
+part 'widget/__settings_group.dart';
+part 'widget/__settings_item.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {
@@ -12,43 +21,32 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SettingsStore settingsStore = sl<SettingsStore>();
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Settings",
+        title: Text(
+          context.t.dashboard.settings,
         ),
       ),
-      body: Observer(
-        builder: (_) => Column(
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(AppConstants.padding),
           children: [
-            SwitchListTile(
-              title: const Text(
-                "Dark Mode",
-              ),
-              value: settingsStore.isDarkMode,
-              onChanged: (_) => settingsStore.setThemeMode(
-                Theme.of(context).brightness == Brightness.dark
-                    ? ThemeMode.light
-                    : ThemeMode.light,
-              ),
-            ),
-            DropdownButton<AppLocale>(
-              value: settingsStore.settings.locale,
-              items: [
-                for (final locale in AppLocale.values)
-                  DropdownMenuItem(
-                    value: locale,
-                    child: Text(
-                      locale.languageTag,
-                    ),
+            ...[
+              _AppSettingsGroup(),
+              _SettingsGroup(
+                items: [
+                  _SettingsItem(
+                    leading: const Icon(CupertinoIcons.info_circle),
+                    title: context.t.settings.aboutApp,
                   ),
+                ],
+              ),
+            ].expand(
+              (element) => [
+                element,
+                Space.v20,
               ],
-              onChanged: (value) {
-                if (value != null) settingsStore.changeLanguage(value);
-              },
-            ),
+            )
           ],
         ),
       ),

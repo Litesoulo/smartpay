@@ -1,0 +1,29 @@
+{
+  "@@locale": "ru",
+  "hello": "Привет!",
+  "dashboard": {
+    "home": "Главная",
+    "transactionHistory": "История",
+    "bankCards": "Мои Карты",
+    "settings": "Настройки"
+  },
+  "settings": {
+    "theme": "Тема",
+    "language": "Язык",
+    "aboutApp": "О приложении",
+    "aboutAppSubtitle": "Нажмите чтобы узнать больше о приложении"
+  },
+  "themeMode": {
+    "dark": "Темный",
+    "light": "Светлый"
+  },
+  "locale": {
+    "turkmen": "Туркменский",
+    "russian": "Русский",
+    "english": "Английский"
+  },
+  "transactionHistory": {
+    "incoming": "Получено",
+    "outcoming": "Отправлено"
+  }
+}

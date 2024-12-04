@@ -36,7 +36,7 @@ abstract class _SettingsStore with Store {
   }
 
   @action
-  Future<void> changeLanguage(AppLocale locale) async {
+  Future<void> changeLanguage(AppLocale? locale) async {
     settings = settings.copyWith(locale: locale);
     await _repository.saveSettings(settings);
   }
