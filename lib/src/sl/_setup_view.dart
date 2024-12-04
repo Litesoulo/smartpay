@@ -1,3 +1,7 @@
 part of 'sl.dart';
 
-_setupView() async {}
+Future<void> _setupView() async {
+  sl.registerSingleton<AppRouter>(
+    AppRouter(),
+  );
+}

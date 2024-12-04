@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:smartpay/src/sl/sl.dart';
-import 'package:turkmen_localization_support/turkmen_localization_support.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
+import 'package:local_auth/local_auth.dart';
 
 import 'generated/strings.g.dart';
-import 'src/view/settings/settings_screen.dart';
+import 'src/sl/sl.dart';
+import 'src/view/application/application.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,24 +13,27 @@ void main() async {
 
   await setupServiceLocator();
 
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      // Localization
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        ...TkDelegates.delegates,
-      ],
-
-      home: SettingsScreen(),
+  final LocalAuthentication auth = LocalAuthentication();
+  try {
+    final bool didAuthenticate = await auth.authenticate(
+      localizedReason: ' ',
+      options: const AuthenticationOptions(useErrorDialogs: false),
     );
+
+    if (didAuthenticate) {
+      return runApp(const Application());
+    }
+
+    throw PlatformException(code: '-1');
+    // ···
+  } on PlatformException catch (e) {
+    if (e.code == auth_error.notEnrolled) {
+      // Add handling of no hardware here.
+    } else if (e.code == auth_error.lockedOut ||
+        e.code == auth_error.permanentlyLockedOut) {
+      // ...
+    } else {
+      // ...
+    }
   }
 }

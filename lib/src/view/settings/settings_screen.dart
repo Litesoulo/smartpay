@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:smartpay/generated/strings.g.dart';
-import '../../view_model/settings/settings_store.dart';
-import '../../sl/sl.dart';
 
+import '../../../generated/strings.g.dart';
+import '../../sl/sl.dart';
+import '../../view_model/settings/settings_store.dart';
+
+@RoutePage()
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 

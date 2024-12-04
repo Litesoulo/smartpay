@@ -1,6 +1,6 @@
 part of 'sl.dart';
 
-_setupModel() async {
+Future<void> _setupModel() async {
   final prefs = await SharedPreferences.getInstance();
 
   sl.registerSingleton<SettingsRepository>(
