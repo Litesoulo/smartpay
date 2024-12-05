@@ -7,6 +7,7 @@ import '../entity/bank_card_entity.dart';
 abstract interface class BankCardRepository {
   Future<List<BankCardEntity>> getBankCards();
   Future<void> saveBankCard(BankCardEntity bankCard);
+  Future<void> removeBankCard(String id);
 }
 
 class BankCardRepositoryImpl implements BankCardRepository {
@@ -30,6 +31,15 @@ class BankCardRepositoryImpl implements BankCardRepository {
   Future<void> saveBankCard(BankCardEntity bankCard) async {
     final existingCards = await getBankCards();
     final updatedCards = [...existingCards, bankCard];
+    final jsonList = updatedCards.map((card) => card.toJson()).toList();
+    final jsonString = json.encode(jsonList);
+    await _prefs.setString(_bankCardsKey, jsonString);
+  }
+
+  @override
+  Future<void> removeBankCard(String id) async {
+    final existingCards = await getBankCards();
+    final updatedCards = existingCards.where((card) => card.id != id).toList();
     final jsonList = updatedCards.map((card) => card.toJson()).toList();
     final jsonString = json.encode(jsonList);
     await _prefs.setString(_bankCardsKey, jsonString);

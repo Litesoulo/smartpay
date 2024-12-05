@@ -7,6 +7,7 @@ import '../common/router/app_router.dart';
 import '../model/repository/bank_card_repository.dart';
 import '../model/repository/bank_repository.dart';
 import '../model/repository/settings_repository.dart';
+import '../view_model/bank_card/bank_card_store.dart';
 import '../view_model/settings/settings_store.dart';
 
 part '_setup_model.dart';
