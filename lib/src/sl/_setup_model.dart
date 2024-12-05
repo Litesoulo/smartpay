@@ -10,4 +10,8 @@ Future<void> _setupModel() async {
   sl.registerSingleton<BankRepository>(
     MockBankRepository(),
   );
+
+  sl.registerSingleton<BankCardRepository>(
+    BankCardRepositoryImpl(prefs: prefs),
+  );
 }
