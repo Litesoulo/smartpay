@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/router/app_router.dart';
+import '../model/repository/bank_repository.dart';
 import '../model/repository/settings_repository.dart';
 import '../view_model/settings/settings_store.dart';
 

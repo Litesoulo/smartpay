@@ -1,6 +1,13 @@
-part of '../bank_cards_screen.dart';
+import 'package:flutter/material.dart';
 
-class _BankCardItem extends StatelessWidget {
+import '../../../common/constant/app_constants.dart';
+import '../../../common/extensions/extensions.dart';
+
+class BankCardItem extends StatelessWidget {
+  const BankCardItem({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

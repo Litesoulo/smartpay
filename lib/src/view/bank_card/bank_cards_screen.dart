@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../generated/strings.g.dart';
 import '../../common/constant/app_constants.dart';
-import '../../common/extensions/extensions.dart';
 import '../../common/widget/space.dart';
-
-part 'widget/__bank_card_item.dart';
+import 'widget/bank_card_item.dart';
 
 @RoutePage()
 class BankCardsScreen extends StatelessWidget {
@@ -34,7 +32,7 @@ class BankCardsScreen extends StatelessWidget {
         separatorBuilder: (context, index) => Space.v10,
         itemCount: 3,
         itemBuilder: (context, index) {
-          return _BankCardItem();
+          return const BankCardItem();
         },
       ),
     );
