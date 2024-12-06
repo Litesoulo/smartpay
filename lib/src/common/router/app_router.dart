@@ -39,5 +39,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: PaymentIncomingRoute.page,
         ),
+
+        // Bank card
+        AutoRoute(
+          page: AddBankCardRoute.page,
+        ),
       ];
 }

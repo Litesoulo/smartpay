@@ -18,6 +18,21 @@ abstract class _BankCardStoreBase with Store {
   @readonly
   ObservableFuture<List<BankCardEntity>> bankCardsFuture = ObservableFuture.value([]);
 
+  @computed
+  List<BankCardEntity> get bankCards {
+    final bankCardsList = bankCardsFuture.value ?? [];
+
+    bankCardsList.sort(
+      (a, b) =>
+          b.dateAdd?.compareTo(
+            a.dateAdd ?? DateTime(0),
+          ) ??
+          0,
+    );
+
+    return bankCardsList;
+  }
+
   @action
   getBankCards() async {
     bankCardsFuture = ObservableFuture(_bankCardRepository.getBankCards());
@@ -26,34 +41,39 @@ abstract class _BankCardStoreBase with Store {
 
   @observable
   @readonly
-  BankCardEntity? bankCard;
+  BankCardEntity bankCard = const BankCardEntity(id: '');
 
   @action
-  setBankId(String? value) => bankCard = bankCard?.copyWith(bankId: value);
+  setBankId(String? value) => bankCard = bankCard.copyWith(bankId: value);
 
   @action
-  setSurnameName(String? value) => bankCard = bankCard?.copyWith(surnameName: value);
+  setSurnameName(String? value) => bankCard = bankCard.copyWith(surnameName: value);
 
   @action
-  setCardNumber(String? value) => bankCard = bankCard?.copyWith(cardNumber: value);
+  setCardNumber(String? value) => bankCard = bankCard.copyWith(cardNumber: value);
 
   @action
-  setExpirationDate(String? value) => bankCard = bankCard?.copyWith(expirationDate: value);
+  setExpirationDate(String? value) => bankCard = bankCard.copyWith(expirationDate: value);
 
   @computed
   bool get isValid =>
-      bankCard != null &&
-      bankCard!.bankId.isNotEmpty &&
-      bankCard!.surnameName.isNotEmpty &&
-      bankCard!.cardNumber.isNotEmpty &&
-      bankCard!.expirationDate.isNotEmpty;
+      bankCard.bankId.isNotEmpty &&
+      bankCard.surnameName.isNotEmpty &&
+      bankCard.cardNumber.isNotEmpty &&
+      bankCard.expirationDate.isNotEmpty;
 
   @action
-  saveCard() {
-    if (bankCard != null) {
-      bankCard = bankCard?.copyWith(id: BankCardEntity.generateId());
-      _bankCardRepository.saveBankCard(bankCard!);
-    }
+  saveCard() async {
+    bankCard = bankCard.copyWith(
+      id: BankCardEntity.generateId(),
+      dateAdd: DateTime.now(),
+    );
+
+    await _bankCardRepository.saveBankCard(bankCard);
+
+    bankCard = const BankCardEntity(id: '');
+
+    await getBankCards();
   }
 
   @action

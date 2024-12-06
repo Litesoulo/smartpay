@@ -10,6 +10,12 @@ Future<void> _setupViewModel() async {
   );
   await settingsStoreCompleter.future;
 
+  sl.registerSingleton<BankStore>(
+    BankStore(
+      bankRepository: sl<BankRepository>(),
+    )..getBanks(),
+  );
+
   sl.registerSingleton<BankCardStore>(
     BankCardStore(
       bankCardRepository: sl<BankCardRepository>(),

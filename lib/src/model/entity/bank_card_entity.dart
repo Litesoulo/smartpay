@@ -11,6 +11,7 @@ class BankCardEntity extends Equatable {
   final String surnameName;
   final String cardNumber;
   final String expirationDate;
+  final DateTime? dateAdd;
 
   const BankCardEntity({
     required this.id,
@@ -18,6 +19,7 @@ class BankCardEntity extends Equatable {
     this.surnameName = '',
     this.cardNumber = '',
     this.expirationDate = '',
+    this.dateAdd,
   });
 
   factory BankCardEntity.fromJson(Map<String, dynamic> json) => _$BankCardEntityFromJson(json);
@@ -34,6 +36,7 @@ class BankCardEntity extends Equatable {
     String? surnameName,
     String? cardNumber,
     String? expirationDate,
+    DateTime? dateAdd,
   }) {
     return BankCardEntity(
       id: id ?? this.id,
@@ -41,6 +44,7 @@ class BankCardEntity extends Equatable {
       surnameName: surnameName ?? this.surnameName,
       cardNumber: cardNumber ?? this.cardNumber,
       expirationDate: expirationDate ?? this.expirationDate,
+      dateAdd: dateAdd ?? this.dateAdd,
     );
   }
 
@@ -51,5 +55,6 @@ class BankCardEntity extends Equatable {
         surnameName,
         cardNumber,
         expirationDate,
+        dateAdd,
       ];
 }

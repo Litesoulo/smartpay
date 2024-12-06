@@ -25,5 +25,13 @@
   "transactionHistory": {
     "incoming": "Kabul edildi",
     "outcoming": "Iberildi"
+  },
+  "addCard": {
+    "addCard": "Täze kart",
+    "selectBank": "Bank saýla",
+    "cardNumber": "Kartyň belgisi",
+    "expirationDate": "Kartyň möhleti (Aý / Ýyl)",
+    "surnameName": "Familiýasy Ady",
+    "add": "Karty goş"
   }
 }

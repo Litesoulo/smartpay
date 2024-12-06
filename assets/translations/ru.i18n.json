@@ -25,5 +25,13 @@
   "transactionHistory": {
     "incoming": "Получено",
     "outcoming": "Отправлено"
+  },
+  "addCard": {
+    "addCard": "Добавить карту",
+    "selectBank": "Выберите банк",
+    "cardNumber": "Номер карты",
+    "expirationDate": "Срок окончания (Месяц / Год)",
+    "surnameName": "Фамилия Имя",
+    "add": "Добавить"
   }
 }

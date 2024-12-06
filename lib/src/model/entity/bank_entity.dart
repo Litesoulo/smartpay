@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../common/utils/helper_functions.dart';
+
 part '../../../generated/src/model/entity/bank_entity.g.dart';
 
 @JsonSerializable()
@@ -27,4 +29,10 @@ class BankEntity extends Equatable {
         nameTk,
         nameRu,
       ];
+
+  String get name => getLocalizedText(
+        en: nameEn,
+        ru: nameRu,
+        tk: nameTk,
+      );
 }

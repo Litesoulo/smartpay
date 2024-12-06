@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constant/app_constants.dart';
 import '../../../common/extensions/extensions.dart';
+import '../../../model/entity/bank_card_entity.dart';
 
 class BankCardItem extends StatelessWidget {
+  final BankCardEntity bankCard;
+
   const BankCardItem({
     super.key,
+    required this.bankCard,
   });
 
   @override
@@ -13,22 +16,23 @@ class BankCardItem extends StatelessWidget {
     return ListTile(
       tileColor: context.theme.cardColor,
       title: Text(
-        '**** **** **** 9142',
-        style: context.textTheme.titleMedium?.copyWith(
+        '**** **** **** ${bankCard.cardNumber.split(' ').last}',
+        style: context.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text(
-        'Amanov Aman \t',
-        style: context.textTheme.titleSmall,
-      ),
-      trailing: Container(
-        width: 80,
-        height: 40,
-        decoration: BoxDecoration(
-          color: context.colorScheme.primary,
-          borderRadius: BorderRadius.circular(AppConstants.borderRadius / 2),
-        ),
+      subtitle: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            bankCard.surnameName,
+            style: context.textTheme.titleMedium,
+          ),
+          Text(
+            bankCard.expirationDate,
+            style: context.textTheme.titleMedium,
+          ),
+        ],
       ),
     );
   }

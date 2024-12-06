@@ -25,5 +25,13 @@
   "transactionHistory": {
     "incoming": "Received",
     "outcoming": "Sent"
+  },
+  "addCard": {
+    "addCard": "Täze kart",
+    "selectBank": "Select Bank",
+    "cardNumber": "Card Number",
+    "expirationDate": "Card expiration (Month / Year)",
+    "surnameName": "Surname Name",
+    "add": "Add card"
   }
 }
