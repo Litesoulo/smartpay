@@ -5,10 +5,31 @@ class _AppSettingsGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return _SettingsGroup(
       items: [
+        _FingerprintCheck(),
         _ThemeMode(),
         _Language(),
       ],
     );
+  }
+}
+
+class _FingerprintCheck extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Observer(builder: (context) {
+      final settings = sl<SettingsStore>().settings;
+
+      return _SettingsItem(
+        onTap: () => sl<SettingsStore>().toggleIdentityCheck(),
+        leading: const Icon(Icons.fingerprint),
+        title: context.t.settings.checkIdentity,
+        trailing: Switch.adaptive(
+          value: settings.checkIdentity,
+          activeColor: context.colorScheme.primary,
+          onChanged: (value) => sl<SettingsStore>().toggleIdentityCheck(),
+        ),
+      );
+    });
   }
 }
 
@@ -24,9 +45,7 @@ class _ThemeMode extends StatelessWidget {
         }
       },
       leading: Icon(
-        context.theme.brightness == Brightness.dark
-            ? Icons.dark_mode_outlined
-            : Icons.light_mode_outlined,
+        context.theme.brightness == Brightness.dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
       ),
       title: context.t.settings.theme,
       trailing: Switch.adaptive(
@@ -85,8 +104,7 @@ class _LanguageSelector extends StatelessWidget {
             dropdownStyleData: DropdownStyleData(
               isOverButton: true,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.circular(AppConstants.borderRadius / 1.6),
+                borderRadius: BorderRadius.circular(AppConstants.borderRadius / 1.6),
               ),
             ),
             iconStyleData: const IconStyleData(
@@ -98,8 +116,7 @@ class _LanguageSelector extends StatelessWidget {
               ),
             ),
             menuItemStyleData: const MenuItemStyleData(
-              padding:
-                  EdgeInsets.symmetric(horizontal: AppConstants.padding * 2),
+              padding: EdgeInsets.symmetric(horizontal: AppConstants.padding * 2),
             ),
           ),
         ),

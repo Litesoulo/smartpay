@@ -57,4 +57,11 @@ abstract class _SettingsStoreBase with Store {
 
     await _settingsRepository.saveSettings(settings);
   }
+
+  @action
+  Future<void> toggleIdentityCheck() async {
+    settings = settings.copyWith(checkIdentity: !settings.checkIdentity);
+
+    await _settingsRepository.saveSettings(settings);
+  }
 }

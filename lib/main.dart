@@ -8,6 +8,7 @@ import 'package:local_auth/error_codes.dart' as auth_error;
 import 'package:local_auth/local_auth.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:smartpay/src/view_model/settings/settings_store.dart';
 
 import 'generated/strings.g.dart';
 import 'src/common/logger/logger.dart';
@@ -25,6 +26,17 @@ void main() async => runZonedGuarded(
         initializeDateFormatting();
 
         await setupServiceLocator();
+
+        final checkIdentity = sl<SettingsStore>().settings.checkIdentity;
+
+        if (!checkIdentity) {
+          runApp(
+            TranslationProvider(
+              child: const Application(),
+            ),
+          );
+          return;
+        }
 
         final LocalAuthentication auth = LocalAuthentication();
         try {
@@ -46,8 +58,7 @@ void main() async => runZonedGuarded(
         } on PlatformException catch (e) {
           if (e.code == auth_error.notEnrolled) {
             // Add handling of no hardware here.
-          } else if (e.code == auth_error.lockedOut ||
-              e.code == auth_error.permanentlyLockedOut) {
+          } else if (e.code == auth_error.lockedOut || e.code == auth_error.permanentlyLockedOut) {
             // ...
           } else {
             // ...
@@ -61,7 +72,6 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }

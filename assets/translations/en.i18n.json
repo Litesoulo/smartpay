@@ -11,7 +11,8 @@
     "theme": "Theme mode",
     "language": "Language",
     "aboutApp": "About App",
-    "aboutAppSubtitle": "Tap to see more about app"
+    "aboutAppSubtitle": "Tap to see more about app",
+    "checkIdentity": "Set biometry security"
   },
   "themeMode": {
     "dark": "Dark",

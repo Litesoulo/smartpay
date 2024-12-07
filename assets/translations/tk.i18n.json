@@ -11,7 +11,8 @@
     "theme": "Tema",
     "language": "Dil",
     "aboutApp": "Programma Barada",
-    "aboutAppSubtitle": "Programma barada köpräk bilmek üçin basyň"
+    "aboutAppSubtitle": "Programma barada köpräk bilmek üçin basyň",
+    "checkIdentity": "Biometriýa goragyny aç"
   },
   "themeMode": {
     "dark": "Garaňky",
