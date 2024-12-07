@@ -24,8 +24,8 @@ abstract class _BankCardStoreBase with Store {
 
     bankCardsList.sort(
       (a, b) =>
-          b.dateAdd?.compareTo(
-            a.dateAdd ?? DateTime(0),
+          a.dateAdd?.compareTo(
+            b.dateAdd ?? DateTime(0),
           ) ??
           0,
     );
@@ -77,5 +77,8 @@ abstract class _BankCardStoreBase with Store {
   }
 
   @action
-  removeCard(BankCardEntity bankCardEntity) async => await _bankCardRepository.removeBankCard(bankCardEntity.id);
+  removeCard(BankCardEntity bankCardEntity) async {
+    await _bankCardRepository.removeBankCard(bankCardEntity.id);
+    await getBankCards();
+  }
 }
