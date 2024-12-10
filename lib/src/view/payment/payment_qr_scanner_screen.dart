@@ -25,8 +25,7 @@ class _MobileScanner extends StatefulWidget {
   State<_MobileScanner> createState() => _MobileScannerState();
 }
 
-class _MobileScannerState extends State<_MobileScanner>
-    with WidgetsBindingObserver {
+class _MobileScannerState extends State<_MobileScanner> with WidgetsBindingObserver {
   final MobileScannerController _scannerController = MobileScannerController(
       // required options for the scanner
       );
@@ -36,12 +35,11 @@ class _MobileScannerState extends State<_MobileScanner>
 
   _handleBarcode(BarcodeCapture barcodeCapture) {
     final value = barcodeCapture.barcodes.firstOrNull;
-    final isUUID = value?.rawValue?.isUUID ?? false;
 
-    if (isUUID) {
-      text = value?.rawValue ?? '';
-      setState(() {});
-    }
+    if (value?.rawValue == null) return;
+
+    text = value?.rawValue ?? '';
+    setState(() {});
   }
 
   @override
