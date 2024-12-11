@@ -5,6 +5,7 @@ abstract interface class PaymentRepository {
   Future<List<PaymentEntity>> readMany();
   Future<PaymentEntity> read(String id);
   Future<PaymentEntity> update(PaymentEntity item);
+  Future<PaymentEntity> create(PaymentEntity item);
 }
 
 class PaymentRepositoryImpl implements PaymentRepository {
@@ -40,6 +41,15 @@ class PaymentRepositoryImpl implements PaymentRepository {
   Future<PaymentEntity> update(PaymentEntity item) async {
     final response = await _pb.collection(PaymentEntity.className).update(
           item.id,
+          body: item.toJson(),
+        );
+
+    return PaymentEntity.fromJson(response.data);
+  }
+
+  @override
+  Future<PaymentEntity> create(PaymentEntity item) async {
+    final response = await _pb.collection(PaymentEntity.className).create(
           body: item.toJson(),
         );
 
