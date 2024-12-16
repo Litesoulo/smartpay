@@ -40,5 +40,8 @@
   "receive": {
     "receive": "Kabul et",
     "enterAmount": "Pul mukdaryny giriziň: "
-  }
+  },
+  "amount": "Pul mukdary",
+  "submit": "Tassykla",
+  "thanksForPayment": "Tölegiňiz üçin sag boluň"
 }

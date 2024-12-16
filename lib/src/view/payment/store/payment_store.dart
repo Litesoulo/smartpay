@@ -73,7 +73,29 @@ abstract class _PaymentStore with Store {
     await newPaymentFuture;
   }
 
+  @observable
+  @readonly
+  ObservableFuture<PaymentEntity?> updatePaymentFuture = ObservableFuture.value(null);
+
+  @action
+  Future<void> updatePayment(PaymentEntity payment) async {
+    updatePaymentFuture = ObservableFuture(_paymentRepository.update(payment));
+    await updatePaymentFuture;
+  }
+
+  @observable
+  @readonly
+  ObservableFuture<PaymentEntity?> detectedPaymentFuture = ObservableFuture.value(null);
+
+  @action
+  Future<void> getDetectedPayment(String id) async {
+    detectedPaymentFuture = ObservableFuture(_paymentRepository.read(id));
+    await detectedPaymentFuture;
+  }
+
   dispose() async {
     newPaymentFuture = ObservableFuture.value(null);
+    updatePaymentFuture = ObservableFuture.value(null);
+    detectedPaymentFuture = ObservableFuture.value(null);
   }
 }

@@ -40,5 +40,8 @@
   "receive": {
     "receive": "Receive",
     "enterAmount": "Enter the amount: "
-  }
+  },
+  "amount": "Amount",
+  "submit": "Submit",
+  "thanksForPayment": "Thanks for payment"
 }

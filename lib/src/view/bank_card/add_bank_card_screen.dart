@@ -16,10 +16,22 @@ import '../../view_model/bank_card/bank_card_store.dart';
 import '../../view_model/bank_card/bank_store.dart';
 
 @RoutePage()
-class AddBankCardScreen extends StatelessWidget {
+class AddBankCardScreen extends StatefulWidget {
   const AddBankCardScreen({
     super.key,
   });
+
+  @override
+  State<AddBankCardScreen> createState() => _AddBankCardScreenState();
+}
+
+class _AddBankCardScreenState extends State<AddBankCardScreen> {
+  @override
+  void dispose() {
+    sl<BankCardStore>().dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +68,7 @@ class AddBankCardScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ...[
-                _BankSelector(
+                BankSelector(
                   banks: banksFuture.value ?? [],
                 ),
                 TextFormField(
@@ -121,10 +133,11 @@ class AddBankCardScreen extends StatelessWidget {
   }
 }
 
-class _BankSelector extends StatelessWidget {
+class BankSelector extends StatelessWidget {
   final List<BankEntity> banks;
 
-  const _BankSelector({
+  const BankSelector({
+    super.key,
     required this.banks,
   });
 

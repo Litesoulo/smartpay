@@ -81,4 +81,10 @@ abstract class _BankCardStoreBase with Store {
     await _bankCardRepository.removeBankCard(bankCardEntity.id);
     await getBankCards();
   }
+
+  dispose() async {
+    bankCardsFuture = ObservableFuture.value([]);
+    bankCard = const BankCardEntity(id: '');
+    await getBankCards();
+  }
 }

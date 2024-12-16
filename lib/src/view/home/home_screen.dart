@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smartpay/generated/assets/assets.gen.dart';
 
 import '../../../generated/strings.g.dart';
+import '../../../main.dart';
 import '../../common/constant/app_constants.dart';
 import '../../common/extensions/extensions.dart';
 import '../../common/router/app_router.gr.dart';
@@ -59,14 +60,15 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            onPressed: () => context.pushRoute(
-              const ReceivePaymentRoute(),
+          if (kIsBusiness)
+            FloatingActionButton(
+              onPressed: () => context.pushRoute(
+                const ReceivePaymentRoute(),
+              ),
+              child: const Icon(
+                Icons.call_received_outlined,
+              ),
             ),
-            child: const Icon(
-              Icons.call_received_outlined,
-            ),
-          ),
           Space.h20,
           _ScanQrButton(),
         ],

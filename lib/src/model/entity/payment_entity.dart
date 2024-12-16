@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../main.dart';
 import '../../view/transaction_history/transaction_history_screen.dart';
 
 class PaymentEntity extends Equatable {
@@ -42,7 +43,7 @@ class PaymentEntity extends Equatable {
       senderId: json[keySender],
       date: DateTime.tryParse(json[keyDate]),
       isSuccess: json[keyIsSuccess],
-      type: json['sender'] == '93txjwkw5238789' ? TransactionTypeEnum.outcome : TransactionTypeEnum.income,
+      type: json['sender'] == clientId ? TransactionTypeEnum.outcome : TransactionTypeEnum.income,
     );
   }
 
@@ -68,4 +69,26 @@ class PaymentEntity extends Equatable {
         date,
         isSuccess,
       ];
+
+  PaymentEntity copyWith({
+    String? id,
+    double? amount,
+    String? receiverId,
+    String? senderId,
+    String? bankIdentifier,
+    TransactionTypeEnum? type,
+    DateTime? date,
+    bool? isSuccess,
+  }) {
+    return PaymentEntity(
+      id: id ?? this.id,
+      amount: amount ?? this.amount,
+      receiverId: receiverId ?? this.receiverId,
+      senderId: senderId ?? this.senderId,
+      bankIdentifier: bankIdentifier ?? this.bankIdentifier,
+      type: type ?? this.type,
+      date: date ?? this.date,
+      isSuccess: isSuccess ?? this.isSuccess,
+    );
+  }
 }

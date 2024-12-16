@@ -15,8 +15,9 @@ import 'src/common/logger/logger.dart';
 import 'src/sl/sl.dart';
 import 'src/view/application/application.dart';
 
-const kIsBusiness = true;
+const kIsBusiness = false;
 const businessId = 'iwbma6ayu863854';
+const clientId = '93txjwkw5238789';
 
 void main() async => runZonedGuarded(
       () async {

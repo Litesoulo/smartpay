@@ -40,5 +40,8 @@
   "receive": {
     "receive": "Получить",
     "enterAmount": "Введите сумму: "
-  }
+  },
+  "amount": "Сумма",
+  "submit": "Подтвердить",
+  "thanksForPayment": "Спасибо за оплату"
 }
