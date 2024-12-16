@@ -15,7 +15,7 @@ Future<void> _setupModel() async {
     BankCardRepositoryImpl(prefs: prefs),
   );
 
-  final pb = PocketBase('http://192.168.14.73:8090');
+  final pb = PocketBase('http://192.168.14.86:8090');
   sl.registerSingleton<PaymentRepository>(
     PaymentRepositoryImpl(pb: pb),
   );

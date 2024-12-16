@@ -21,4 +21,10 @@ Future<void> _setupViewModel() async {
       bankCardRepository: sl<BankCardRepository>(),
     )..getBankCards(),
   );
+
+  sl.registerSingleton<PaymentStore>(
+    PaymentStore(
+      paymentRepository: sl<PaymentRepository>(),
+    ),
+  );
 }

@@ -1,9 +1,9 @@
 part of '../transaction_history_screen.dart';
 
 class _TransactionHistoryCard extends StatelessWidget {
-  final int index;
+  final PaymentEntity paymentEntity;
 
-  const _TransactionHistoryCard({required this.index});
+  const _TransactionHistoryCard({required this.paymentEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class _TransactionHistoryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Внеш эконом банк',
+            paymentEntity.bankIdentifier,
             style: context.textTheme.labelLarge,
           ),
           Text(
-            '200 TMT',
+            '${paymentEntity.amount.toStringAsFixed(2)} TMT',
             style: context.textTheme.labelLarge,
           ),
         ],
@@ -34,14 +34,14 @@ class _TransactionHistoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  index == 0 ? 'неудачно' : 'успешно',
+                  paymentEntity.isSuccess ? 'успешно' : 'неудачно',
                   style: context.textTheme.labelSmall,
                 ),
                 Space.h5,
                 Icon(
                   Icons.circle,
                   size: 12,
-                  color: index == 0 ? context.colorScheme.error : context.colorScheme.primary,
+                  color: paymentEntity.isSuccess ? context.colorScheme.primary : context.colorScheme.error,
                 ),
               ],
             ),

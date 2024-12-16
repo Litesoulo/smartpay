@@ -9,6 +9,7 @@ import '../model/repository/bank_card_repository.dart';
 import '../model/repository/bank_repository.dart';
 import '../model/repository/payment_repository.dart';
 import '../model/repository/settings_repository.dart';
+import '../view/payment/store/payment_store.dart';
 import '../view_model/bank_card/bank_card_store.dart';
 import '../view_model/bank_card/bank_store.dart';
 import '../view_model/settings/settings_store.dart';

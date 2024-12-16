@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../view/transaction_history/transaction_history_screen.dart';
+
 class PaymentEntity extends Equatable {
   static const className = 'payment';
 
@@ -8,6 +10,8 @@ class PaymentEntity extends Equatable {
   static const keySender = 'sender';
   static const keyBank = 'bank';
   static const keyBankIdentifier = 'bank_identifier';
+  static const keyDate = 'date';
+  static const keyIsSuccess = 'isSuccess';
 
   const PaymentEntity({
     required this.id,
@@ -15,6 +19,9 @@ class PaymentEntity extends Equatable {
     this.receiverId = '',
     this.senderId = '',
     this.bankIdentifier = '',
+    this.type = TransactionTypeEnum.income,
+    this.date,
+    this.isSuccess = false,
   });
 
   final String id;
@@ -22,23 +29,30 @@ class PaymentEntity extends Equatable {
   final String receiverId;
   final String senderId;
   final String bankIdentifier;
+  final TransactionTypeEnum type;
+  final DateTime? date;
+  final bool isSuccess;
 
   static PaymentEntity fromJson(Map<String, dynamic> json) {
     return PaymentEntity(
       id: json['id'],
-      amount: double.tryParse(json[PaymentEntity.keyAmount].toString()) ?? 0,
-      bankIdentifier: json[PaymentEntity.keyBank],
-      receiverId: json[PaymentEntity.keyReceiver],
-      senderId: json[PaymentEntity.keySender],
+      amount: double.tryParse(json[keyAmount].toString()) ?? 0,
+      bankIdentifier: json[keyBank],
+      receiverId: json[keyReceiver],
+      senderId: json[keySender],
+      date: DateTime.tryParse(json[keyDate]),
+      isSuccess: json[keyIsSuccess],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      PaymentEntity.keyAmount: amount,
-      PaymentEntity.keyBank: bankIdentifier,
-      PaymentEntity.keyReceiver: receiverId,
-      PaymentEntity.keySender: senderId,
+      keyAmount: amount,
+      keyBank: bankIdentifier,
+      keyReceiver: receiverId,
+      keySender: senderId,
+      keyDate: date?.toIso8601String(),
+      keyIsSuccess: isSuccess,
     };
   }
 
@@ -49,5 +63,8 @@ class PaymentEntity extends Equatable {
         receiverId,
         senderId,
         bankIdentifier,
+        type,
+        date,
+        isSuccess,
       ];
 }

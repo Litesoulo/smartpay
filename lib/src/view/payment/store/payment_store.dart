@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:smartpay/src/view/transaction_history/transaction_history_screen.dart';
 
 import '../../../model/entity/payment_entity.dart';
 import '../../../model/repository/payment_repository.dart';
@@ -10,7 +11,18 @@ class PaymentStore = _PaymentStore with _$PaymentStore;
 abstract class _PaymentStore with Store {
   final PaymentRepository _paymentRepository;
 
-  _PaymentStore({required PaymentRepository paymentRepository}) : _paymentRepository = paymentRepository;
+  _PaymentStore({
+    required PaymentRepository paymentRepository,
+  }) : _paymentRepository = paymentRepository {
+    _initReactions();
+  }
+
+  _initReactions() {
+    reaction(
+      (_) => type,
+      (_) => getPayments,
+    );
+  }
 
   @observable
   @readonly
@@ -21,6 +33,34 @@ abstract class _PaymentStore with Store {
     paymentsFuture = ObservableFuture(_paymentRepository.readMany());
     await paymentsFuture;
   }
+
+  @computed
+  List<PaymentEntity> get paymentsList => type == TransactionTypeEnum.income ? incomePayments : outcomePayments;
+
+  @computed
+  List<PaymentEntity> get incomePayments =>
+      paymentsFuture.value
+          ?.where(
+            (e) => e.type == TransactionTypeEnum.income,
+          )
+          .toList() ??
+      [];
+
+  @computed
+  List<PaymentEntity> get outcomePayments =>
+      paymentsFuture.value
+          ?.where(
+            (e) => e.type == TransactionTypeEnum.outcome,
+          )
+          .toList() ??
+      [];
+
+  @observable
+  @readonly
+  TransactionTypeEnum type = TransactionTypeEnum.income;
+
+  @action
+  setTransactionType(TransactionTypeEnum value) => type = value;
 
   @observable
   @readonly
