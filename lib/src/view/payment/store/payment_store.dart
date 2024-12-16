@@ -1,8 +1,9 @@
 import 'package:mobx/mobx.dart';
-import 'package:smartpay/src/view/transaction_history/transaction_history_screen.dart';
 
+import '../../../../main.dart';
 import '../../../model/entity/payment_entity.dart';
 import '../../../model/repository/payment_repository.dart';
+import '../../transaction_history/transaction_history_screen.dart';
 
 part '../../../../generated/src/view/payment/store/payment_store.g.dart';
 
@@ -57,7 +58,7 @@ abstract class _PaymentStore with Store {
 
   @observable
   @readonly
-  TransactionTypeEnum type = TransactionTypeEnum.income;
+  TransactionTypeEnum type = kIsBusiness ? TransactionTypeEnum.income : TransactionTypeEnum.outcome;
 
   @action
   setTransactionType(TransactionTypeEnum value) => type = value;

@@ -42,6 +42,7 @@ class PaymentEntity extends Equatable {
       senderId: json[keySender],
       date: DateTime.tryParse(json[keyDate]),
       isSuccess: json[keyIsSuccess],
+      type: json['sender'] == '93txjwkw5238789' ? TransactionTypeEnum.outcome : TransactionTypeEnum.income,
     );
   }
 

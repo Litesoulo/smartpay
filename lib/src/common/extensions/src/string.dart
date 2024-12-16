@@ -21,6 +21,12 @@ extension StringX on String {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 
+  String capitalizeAll() {
+    final formatted = split(' ').map((e) => e.capitalize()).join(' ');
+
+    return formatted;
+  }
+
   bool get isNumeric {
     final numericRegExp = RegExp(r'^\d+$');
     return numericRegExp.hasMatch(this);

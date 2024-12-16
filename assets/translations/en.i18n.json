@@ -34,5 +34,7 @@
     "expirationDate": "Card expiration (Month / Year)",
     "surnameName": "Surname Name",
     "add": "Add card"
-  }
+  },
+  "success": "success",
+  "fail": "fail"
 }

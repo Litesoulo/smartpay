@@ -34,5 +34,7 @@
     "expirationDate": "Kartyň möhleti (Aý / Ýyl)",
     "surnameName": "Familiýasy Ady",
     "add": "Karty goş"
-  }
+  },
+  "success": "üstünlik",
+  "fail": "ýalňyşlyk"
 }

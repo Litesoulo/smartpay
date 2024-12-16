@@ -2,13 +2,15 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
-import 'package:smartpay/src/model/entity/payment_entity.dart';
 
 import '../../../generated/strings.g.dart';
+import '../../../main.dart';
 import '../../common/constant/app_constants.dart';
 import '../../common/extensions/extensions.dart';
 import '../../common/widget/space.dart';
+import '../../model/entity/payment_entity.dart';
 import '../../sl/sl.dart';
 import '../payment/store/payment_store.dart';
 
@@ -55,10 +57,12 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         title: Text(
           context.t.dashboard.transactionHistory,
         ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: _Tabbar(),
-        ),
+        bottom: kIsBusiness
+            ? PreferredSize(
+                preferredSize: const Size.fromHeight(60),
+                child: _Tabbar(),
+              )
+            : null,
       ),
       body: RefreshIndicator(
         onRefresh: () async {

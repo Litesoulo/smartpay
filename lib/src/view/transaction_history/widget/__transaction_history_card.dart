@@ -26,7 +26,7 @@ class _TransactionHistoryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '21 Ноября 2023 г. 13:30',
+            DateFormat('dd MMMM yyyy hh:mm').format(paymentEntity.date ?? DateTime(2024)).capitalizeAll(),
             style: context.textTheme.labelSmall,
           ),
           Expanded(
@@ -34,7 +34,7 @@ class _TransactionHistoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  paymentEntity.isSuccess ? 'успешно' : 'неудачно',
+                  paymentEntity.isSuccess ? context.t.success : context.t.fail,
                   style: context.textTheme.labelSmall,
                 ),
                 Space.h5,
