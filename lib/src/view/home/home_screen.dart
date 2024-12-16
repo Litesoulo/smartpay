@@ -18,13 +18,14 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: context.height * 0.33,
+            height: context.height * 0.4,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
                   context.colorScheme.primary,
+                  context.colorScheme.primary.withOpacity(0.5),
                   context.colorScheme.onPrimary,
                 ],
               ),
@@ -59,7 +60,9 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () => context.pushRoute(
+              const ReceivePaymentRoute(),
+            ),
             child: const Icon(
               Icons.call_received_outlined,
             ),

@@ -36,5 +36,9 @@
     "add": "Karty goş"
   },
   "success": "üstünlik",
-  "fail": "ýalňyşlyk"
+  "fail": "ýalňyşlyk",
+  "receive": {
+    "receive": "Kabul et",
+    "enterAmount": "Pul mukdaryny giriziň: "
+  }
 }

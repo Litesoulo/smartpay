@@ -36,5 +36,9 @@
     "add": "Add card"
   },
   "success": "success",
-  "fail": "fail"
+  "fail": "fail",
+  "receive": {
+    "receive": "Receive",
+    "enterAmount": "Enter the amount: "
+  }
 }

@@ -72,4 +72,8 @@ abstract class _PaymentStore with Store {
     newPaymentFuture = ObservableFuture(_paymentRepository.create(payment));
     await newPaymentFuture;
   }
+
+  dispose() async {
+    newPaymentFuture = ObservableFuture.value(null);
+  }
 }

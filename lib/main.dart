@@ -16,6 +16,7 @@ import 'src/sl/sl.dart';
 import 'src/view/application/application.dart';
 
 const kIsBusiness = true;
+const businessId = 'iwbma6ayu863854';
 
 void main() async => runZonedGuarded(
       () async {
