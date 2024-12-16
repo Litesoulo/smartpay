@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:smartpay/generated/assets/assets.gen.dart';
 
-import '../../../generated/assets/assets.gen.dart';
 import '../../../generated/strings.g.dart';
+import '../../common/constant/app_constants.dart';
 import '../../common/extensions/extensions.dart';
 import '../../common/router/app_router.gr.dart';
+import '../../common/widget/space.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -13,19 +15,59 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.t.dashboard.home,
-        ),
-      ),
-      body: ListView(
+      body: Stack(
         children: [
-          Assets.images.loading.image(
-            height: context.height * 0.24,
+          Container(
+            height: context.height * 0.33,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  context.colorScheme.primary,
+                  context.colorScheme.onPrimary,
+                ],
+              ),
+            ),
+          ),
+          SafeArea(
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: const EdgeInsets.all(AppConstants.padding),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      context.t.dashboard.home,
+                      style: context.textTheme.titleLarge?.copyWith(
+                        color: context.colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Assets.images.oguzhanLogo.image(
+                    height: context.height * 0.3,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
-      floatingActionButton: _ScanQrButton(),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(
+              Icons.call_received_outlined,
+            ),
+          ),
+          Space.h20,
+          _ScanQrButton(),
+        ],
+      ),
     );
   }
 }

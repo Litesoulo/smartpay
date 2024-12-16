@@ -15,7 +15,7 @@ import 'src/common/logger/logger.dart';
 import 'src/sl/sl.dart';
 import 'src/view/application/application.dart';
 
-const kIsBusiness = false;
+const kIsBusiness = true;
 
 void main() async => runZonedGuarded(
       () async {
