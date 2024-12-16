@@ -105,6 +105,14 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       alignment: Alignment.center,
                       child: QrImageView(
                         data: newPayment.id,
+                        dataModuleStyle: QrDataModuleStyle(
+                          color: context.colorScheme.onSurface,
+                          dataModuleShape: QrDataModuleShape.square,
+                        ),
+                        eyeStyle: QrEyeStyle(
+                          color: context.colorScheme.onSurface,
+                          eyeShape: QrEyeShape.square,
+                        ),
                       ),
                     );
                   }

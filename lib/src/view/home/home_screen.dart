@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                 colors: [
                   context.colorScheme.primary,
                   context.colorScheme.primary.withOpacity(0.5),
-                  context.colorScheme.onPrimary,
+                  context.theme.scaffoldBackgroundColor,
                 ],
               ),
             ),
